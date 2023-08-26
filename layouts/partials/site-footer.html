@@ -1,23 +1,13 @@
-<footer class="{{ .Site.Params.background_color_class | default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="{{ .Site.Home.Permalink }}" >
-    &copy; {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ now.Format "2006"}} {{ end }}
-  </a>
-  <div class="flex-l items-center">
-    {{ if .Site.Menus.footer }}
-    <nav>
-      <div class="nav-links">
-        {{ range .Site.Menus.footer }}
-        <a class="link hover-white white-90 no-underline f5 f4-ns" href=" {{ .URL }}" title="{{ i18n " pageTitle" . }}">
-          {{ .Name }}
-        </a>
-        {{ end }}
-      </div>
-    </nav>
-  
-  
-  
-    {{ end }}
-  </div>
+<footer class="{{ .Site.Params.background_color_class | default " bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex flex-column flex-row-ns flex-wrap justify-between">
+    <a class="f4 fw4 hover-white no-underline white-70 dib pv2 ph3 nowrap" href="{{ .Site.BaseURL }}">
+      {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ end }}
+    </a>
+    {{- with site.Menus.footer -}}
+    {{- range . }}
+    <a class="f4 fw4 hover-white no-underline white-70 dib pv2 ph3" href="{{ .URL }}">{{ .Name }}</a>
+    {{- end -}}
+    {{- end }}
+    <div class="f4 fw4 hover-white no-underline white-70 pv2 ph3">{{ partial "social-follow.html" . }}</div>
   </div>
 </footer>
